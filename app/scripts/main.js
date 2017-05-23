@@ -98,7 +98,7 @@
         //グリッドオブジェクトをシーンに追加する
         //scene.add(grid);
 
-        var planeGeometry = new THREE.PlaneBufferGeometry(20, 20, 32);
+        var planeGeometry = new THREE.PlaneBufferGeometry(200, 200, 32);
         var planeMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff, side: THREE.DoubleSide });
         var plane = new THREE.Mesh(planeGeometry, planeMaterial);
         plane.rotation.x = Math.PI / 180 * 90;
@@ -114,8 +114,8 @@
 
         scene.add(player);
 
-        let targetX = 0;
-        let targetY = 0;
+        let targetX = width / 2;
+        let targetY = height;
 
         //マウスイベントを設定
         window.addEventListener('mousemove', function(e) {
@@ -124,12 +124,11 @@
             targetY = e.clientY;
         });
 
-        window.addEventListener('touchend', function(e) {
-            console.log(e)
-            console.log(window.innerWidth)
-            targetX = e.clientX / 2;
-            targetY = e.clientY / 2;
-        });
+        // window.addEventListener('touchend', function(e) {
+        //     console.log(e)
+        //     targetX = e.clientX;
+        //     targetY = e.clientY;
+        // });
 
         window.addEventListener('click', function(e) {
             if (playerClass.isMove === true) {
