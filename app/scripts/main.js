@@ -119,8 +119,16 @@
 
         //マウスイベントを設定
         window.addEventListener('mousemove', function(e) {
+            console.log(e)
             targetX = e.clientX;
             targetY = e.clientY;
+        });
+
+        window.addEventListener('touchend', function(e) {
+            console.log(e)
+            console.log(window.innerWidth)
+            targetX = e.clientX / 2;
+            targetY = e.clientY / 2;
         });
 
         window.addEventListener('click', function(e) {
