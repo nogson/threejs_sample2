@@ -119,16 +119,15 @@
 
         //マウスイベントを設定
         window.addEventListener('mousemove', function(e) {
-            console.log(e)
             targetX = e.clientX;
             targetY = e.clientY;
         });
 
-        // window.addEventListener('touchend', function(e) {
-        //     console.log(e)
-        //     targetX = e.clientX;
-        //     targetY = e.clientY;
-        // });
+        window.addEventListener('touchend', function(e) {
+            alert(e.clientX)
+            targetX = e.clientX;
+            targetY = e.clientY;
+        });
 
         window.addEventListener('click', function(e) {
             if (playerClass.isMove === true) {
