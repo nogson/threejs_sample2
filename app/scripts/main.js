@@ -123,12 +123,6 @@
             targetY = e.clientY;
         });
 
-        window.addEventListener('touchend', function(e) {
-            alert(e.clientX)
-            targetX = e.clientX;
-            targetY = e.clientY;
-        });
-
         window.addEventListener('click', function(e) {
             if (playerClass.isMove === true) {
                 playerClass.stop();
