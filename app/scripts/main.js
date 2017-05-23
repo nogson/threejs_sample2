@@ -15,6 +15,7 @@
         let grid; //ガイド
         let directional;
         let ambient;
+        let zoomVal = 0;
 
         // 各種パラメータを設定するために定数オブジェクトを定義
         let CAMERA_PARAMETER = { // カメラに関するパラメータ
@@ -43,6 +44,11 @@
                 positionY: 1
             }
         }
+
+        //スマホの場合はcanvasの拡大率を座標に変換
+        // if ((navigator.userAgent.indexOf('iPhone') > 0 && navigator.userAgent.indexOf('iPad') == -1) || navigator.userAgent.indexOf('iPod') > 0 || navigator.userAgent.indexOf('Android') > 0) {
+        //     zoomVal = 0.38;
+        // }
 
         //let GROUND_MATERIAL = { color: 0xffffff, side: THREE.DoubleSide };
 
@@ -98,7 +104,7 @@
         //グリッドオブジェクトをシーンに追加する
         //scene.add(grid);
 
-        var planeGeometry = new THREE.PlaneBufferGeometry(200, 200, 32);
+        var planeGeometry = new THREE.PlaneBufferGeometry(50, 50, 32);
         var planeMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff, side: THREE.DoubleSide });
         var plane = new THREE.Mesh(planeGeometry, planeMaterial);
         plane.rotation.x = Math.PI / 180 * 90;
@@ -123,13 +129,18 @@
             targetY = e.clientY;
         });
 
-        window.addEventListener('click', function(e) {
-            if (playerClass.isMove === true) {
-                playerClass.stop();
-            } else {
-                playerClass.start();
-            }
+        window.addEventListener('touchstart', function(e) {
+            targetX = e.changedTouches[0].clientX;
+            targetY = e.changedTouches[0].clientY;
+        });
 
+
+        window.addEventListener('click', function(e) {
+            // if (playerClass.isMove === true) {
+            //     playerClass.stop();
+            // } else {
+            //     playerClass.start();
+            // }
         });
 
         render();
@@ -154,6 +165,8 @@
             let h = window.innerHeight;
             let x = targetX * 2.0 - w;
             let y = targetY * 2.0 - h;
+            console.log(targetX, targetY)
+
             let length = Math.sqrt(x * x + y * y);
             x /= length;
             y /= length;
