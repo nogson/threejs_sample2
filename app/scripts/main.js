@@ -129,7 +129,17 @@
             targetY = e.clientY;
         });
 
+        window.addEventListener('touchmove', function(e) {
+            targetX = e.changedTouches[0].clientX;
+            targetY = e.changedTouches[0].clientY;
+        });
+
         window.addEventListener('touchstart', function(e) {
+            targetX = e.changedTouches[0].clientX;
+            targetY = e.changedTouches[0].clientY;
+        });
+
+        window.addEventListener('touchend', function(e) {
             targetX = e.changedTouches[0].clientX;
             targetY = e.changedTouches[0].clientY;
         });
@@ -161,11 +171,12 @@
         }
 
         function move() {
+            // console.log(targetX, targetY)
             let w = window.innerWidth;
             let h = window.innerHeight;
             let x = targetX * 2.0 - w;
             let y = targetY * 2.0 - h;
-            console.log(targetX, targetY)
+            console.log(x, y)
 
             let length = Math.sqrt(x * x + y * y);
             x /= length;
